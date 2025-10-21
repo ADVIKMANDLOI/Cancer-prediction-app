@@ -19,23 +19,21 @@ st.title("Model Insights & Performance")
 @st.cache_resource
 def load_model():
     try:
-        # Use absolute path from app directory to project root
-        project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        model_path = os.path.join(project_root, "models", "xgboost_model.pkl")
+        # Use relative path from app directory to project root
+        model_path = os.path.join(os.path.dirname(__file__), "..", "..", "models", "xgboost_model.pkl")
         return joblib.load(model_path)
-    except FileNotFoundError:
-        st.error(f"Model file not found at {model_path}.")
+    except Exception as e:
+        st.error(f"Error loading model: {str(e)}.")
         return None
 
 @st.cache_data
 def load_data():
     try:
-        # Use absolute path from app directory to project root
-        project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        data_path = os.path.join(project_root, "data.csv")
+        # Use relative path from app directory to project root
+        data_path = os.path.join(os.path.dirname(__file__), "..", "..", "data.csv")
         return pd.read_csv(data_path)
-    except FileNotFoundError:
-        st.error(f"Dataset not found at {data_path}.")
+    except Exception as e:
+        st.error(f"Error loading dataset: {str(e)}.")
         return None
 
 model = load_model()

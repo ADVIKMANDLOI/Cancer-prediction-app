@@ -44,13 +44,12 @@ st.markdown("""
 # Dataset preview (optional)
 st.header("Dataset Preview")
 try:
-    # Use absolute path from app directory to project root
-    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    data_path = os.path.join(project_root, "data.csv")
+    # Use relative path from app directory to project root
+    data_path = os.path.join(os.path.dirname(__file__), "..", "data.csv")
     data = pd.read_csv(data_path)
     st.dataframe(data.head(5))
-except FileNotFoundError:
-    st.error(f"Dataset file not found at {data_path}. Please ensure 'data.csv' is in the project root.")
+except Exception as e:
+    st.error(f"Error loading dataset: {str(e)}. Please ensure 'data.csv' is in the project root.")
 
 # Footer
 st.markdown("---")

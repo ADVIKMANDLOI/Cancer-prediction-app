@@ -44,8 +44,8 @@ st.markdown("""
 # Dataset preview (optional)
 st.header("Dataset Preview")
 try:
-    # Use relative path from app directory to project root
-    data_path = os.path.join(os.path.dirname(__file__), "..", "data.csv")
+    # Use relative path from app directory to repository root
+    data_path = os.path.join(os.path.dirname(__file__), "..", "..", "data.csv")
     data = pd.read_csv(data_path)
     st.dataframe(data.head(5))
 except Exception as e:

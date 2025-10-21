@@ -19,8 +19,8 @@ st.title("Model Insights & Performance")
 @st.cache_resource
 def load_model():
     try:
-        # Use relative path from app directory to project root
-        model_path = os.path.join(os.path.dirname(__file__), "..", "..", "models", "xgboost_model.pkl")
+        # Use relative path from pages directory to repository root
+        model_path = os.path.join(os.path.dirname(__file__), "..", "..", "..", "models", "xgboost_model.pkl")
         return joblib.load(model_path)
     except Exception as e:
         st.error(f"Error loading model: {str(e)}.")
@@ -29,8 +29,8 @@ def load_model():
 @st.cache_data
 def load_data():
     try:
-        # Use relative path from app directory to project root
-        data_path = os.path.join(os.path.dirname(__file__), "..", "..", "data.csv")
+        # Use relative path from pages directory to repository root
+        data_path = os.path.join(os.path.dirname(__file__), "..", "..", "..", "data.csv")
         return pd.read_csv(data_path)
     except Exception as e:
         st.error(f"Error loading dataset: {str(e)}.")

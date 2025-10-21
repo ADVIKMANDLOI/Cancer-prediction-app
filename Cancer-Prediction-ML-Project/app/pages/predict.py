@@ -15,8 +15,8 @@ st.title("Predict Breast Cancer Diagnosis")
 @st.cache_resource
 def load_model():
     try:
-        # Use relative path from app directory to project root
-        model_path = os.path.join(os.path.dirname(__file__), "..", "..", "models", "xgboost_model.pkl")
+        # Use relative path from pages directory to repository root
+        model_path = os.path.join(os.path.dirname(__file__), "..", "..", "..", "models", "xgboost_model.pkl")
         return joblib.load(model_path)
     except Exception as e:
         st.error(f"Error loading model: {str(e)}. Please ensure 'xgboost_model.pkl' is in the models/ directory.")
